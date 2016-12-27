@@ -14,7 +14,7 @@ row = 0
 col = 0
 
 oXlsx:= XlsxWriterPython():New( "example3.xlsx", "example3.py" )
-oXlsx:cPythonExe:= "c:\python35\python.exe"
+//oXlsx:cPythonExe:= "c:\python\python.exe"
 oXlsx:Add_Worksheet( "ws1", "sheet1" )
 
 // Add a bold format to use to highlight cells.

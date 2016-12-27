@@ -14,7 +14,7 @@ Python class: https://github.com/jmcnamara/XlsxWriter
 CLASS XlsxWriterPython
 
    DATA nH
-   DATA cPythonExe INIT "bin\python\python.exe"
+   DATA cPythonExe INIT "c:\python\python.exe"
    DATA cWorkbookFile
    DATA cPyFile INIT "xlsxwriter_python.py"
    DATA aFormat INIT { => }

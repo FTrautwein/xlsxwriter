@@ -7,7 +7,7 @@ Set( _SET_DATEFORMAT, "yyyy-mm-dd" )
 row = 0
 
 oXlsx:= XlsxWriterPython():New( "example4.xlsx", "example4.py" )
-oXlsx:cPythonExe:= "c:\python35\python.exe"
+//oXlsx:cPythonExe:= "c:\python\python.exe"
 oXlsx:Add_Worksheet( "ws1", "sheet1" )
 
 SetFormat( oXlsx )
