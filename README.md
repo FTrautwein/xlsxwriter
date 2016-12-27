@@ -1,4 +1,4 @@
-# xlsxwriter
+# XlsxWriter for Harbour
 Harbour Class to generate Excel xlsx files using Python and XlsxWriter
 
 You can get python from https://www.python.org/
