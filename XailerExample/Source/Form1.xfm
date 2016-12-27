@@ -1,0 +1,66 @@
+METHOD CreateForm( lCreate ) CLASS TForm1
+
+   IF lCreate
+      ::SetBounds( 591, 259, 608, 399 )
+      ::SetClientSize( 592, 360 )
+      ::cText := "Exemplo de Browse / Excel"
+      ::oFont := TFont():Create( "Microsoft Sans Serif", 8, 0, 400 )
+      ::nClrText := clBlack
+      ::OnShow := "FormShow"
+      ::Create()
+   ENDIF
+   ::Super:CreateForm( .F. )
+
+   WITH OBJECT ::oDSConsulta := TMemDataSet():New( Self )
+      :OnCreate := "DSConsultaCreate"
+      :Create()
+   END
+
+   WITH OBJECT ::oBrwConsulta := TDBBrowse():New( Self )
+      :SetBounds( 4, 4, 582, 318 )
+      :nAnchors := akALL
+      WITH OBJECT TDBBrwColumn():New( ::oBrwConsulta )
+         :cHeader := "Código"
+         :nClrPane := 0xD7D7D7
+         :nWidth := 57
+         :oDataField := "codigo"
+         :Create()
+      END
+
+      WITH OBJECT TDBBrwColumn():New( ::oBrwConsulta )
+         :cHeader := "Nome"
+         :nClrPane := 0xFFFFA8
+         :nWidth := 331
+         :oDataField := "nome"
+         :Create()
+      END
+
+      WITH OBJECT TDBBrwColumn():New( ::oBrwConsulta )
+         :cHeader := "Valor"
+         :cPicture := "@E 999,999,999.99"
+         :nClrPane := 0xA8FFFF
+         :nAlignment := taRIGHT
+         :nWidth := 169
+         :oDataField := "valor"
+         :Create()
+      END
+
+      :nRowDividerStyle := blRAISED
+      :nColDividerStyle := blRAISED
+      :nHeaderHeight := 40
+      :lFooter := .T.
+      :lRecordSelector := .F.
+      :oDataSet := ::oDSConsulta
+      :lAutoOrder := .T.
+      :Create()
+   END
+
+   WITH OBJECT ::oBtnExporta := TBtnBmp():New( Self )
+      :SetBounds( 4, 328, 582, 25 )
+      :cText := "Exporta para Excel"
+      :nAnchors := akLEFTRIGHTBOTTOM
+      :OnClick := "BtnExportaClick"
+      :Create()
+   END
+
+RETURN Self

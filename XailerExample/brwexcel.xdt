@@ -1,0 +1,9 @@
+[OPTIONS]
+LockControls=.F.
+[DESKTOP]
+1=Form1.prg,3,73,3,59,0,0,648
+2=brwexcel.prg,5,19,5,19,0,0,336
+3=classXlsWriterPython.prg,0,0,0,0,0,0,928
+4=classXlsWriter.prg,0,0,0,0,0,0,952
+5=Module1.prg,5,19,5,19,0,0,192
+Current=4

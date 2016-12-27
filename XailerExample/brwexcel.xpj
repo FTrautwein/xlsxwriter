@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<Project>
+   <Type Value="exe"/>
+   <Description Value="brwexcel"/>
+   <Output Value="brwexcel.exe"/>
+   <XailerVersion Value="4.0"/>
+   <Compiler Value="Harbour"/>
+   <CCompiler Value="MinGW"/>
+   <MainModule Value="Form1.prg"/>
+   <MultipleInstances Value="Y"/>
+   <XPManifest Value="Y"/>
+   <Icon Value=""/>
+   <Parameters Value=""/>
+   <Version>
+      <Version Value="1.0"/>
+      <Release Value="0"/>
+      <Build Value="0"/>
+      <Company Value="TWN Informática Ltda"/>
+      <CopyRight Value="Fausto Di Creddo Trautwein"/>
+      <TradeMarks Value="TWN Informática LTDA"/>
+      <Comments Value="Exemplo para gerar planilha Excel a partir de TDBBrowse"/>
+   </Version>
+   <Directories>
+      <SourceDir Value="Source"/>
+      <IncludeDir Value="Include"/>
+      <ResourceDir Value="Resource"/>
+      <ObjDir Value="Obj"/>
+   </Directories>
+   <Options>
+      <AutomaticMemvarDeclaration Value="N"/>
+      <DebugInfo Value="N"/>
+      <SuppressLineNumberInformation Value="N"/>
+      <SuppressShortcutting Value="N"/>
+      <WarnningLevel Value="1"/>
+      <MoreOptions Value=""/>
+      <MoreCOpt Value=""/>
+      <MapFile Value="N"/>
+      <ConsoleMode Value="N"/>
+      <MoreLinkOpt Value=""/>
+   </Options>
+   <Export>
+      <Dir Value=""/>
+      <Source Value="Y"/>
+      <Exe Value="N"/>
+      <Bin Value="N"/>
+      <Resource Value="Y"/>
+      <ResourceAll Value="N"/>
+      <ErrorLog Value="N"/>
+      <Subprojects Value="Y"/>
+   </Export>
+   <Clean>
+      <All Value="N"/>
+   </Clean>
+   <FinalExe>
+      <FullCompile Value="N"/>
+      <UpxCompress Value="N"/>
+      <CompressFlags Value=""/>
+      <Installer Value="N"/>
+      <InstallerFlags Value=""/>
+      <TlbInfo Value="N"/>
+   </FinalExe>
+   <VCS>
+      <Type Value="None"/>
+   </VCS>
+   <Files>
+      <File Filename="brwexcel.prg"/>
+      <File Filename="Form1.prg"/>
+      <File Filename="Module1.prg"/>
+      <File Filename="classXlsWriterPython.prg"/>
+      <File Filename="classXlsWriter.prg"/>
+   </Files>
+   <Libraries>
+      <Library Filename="[harbour]hbxpp"/>
+      <Library Filename="[xailer]xailer" First="Y"/>
+      <Library Filename="[xailer]xailertcls"/>
+      <Library Filename="[xailer]samples"/>
+      <Library Filename="[xailer]sqlite" Link="N"/>
+      <Library Filename="[xailer]mariadb" Link="N"/>
+      <Library Filename="[xailer]mysql" Link="N"/>
+      <Library Filename="[xailer]xailer.res"/>
+      <Library Filename="[xailer]xailermsg.res"/>
+      <Library Filename="[harbour]hbextern"/>
+      <Library Filename="[harbour]hbdebug"/>
+      <Library Filename="[harbour]hbvm"/>
+      <Library Filename="[harbour]hbvmmt" Link="N"/>
+      <Library Filename="[harbour]hbrtl"/>
+      <Library Filename="[harbour]hblang"/>
+      <Library Filename="[harbour]hbcpage"/>
+      <Library Filename="[harbour]hbuddall"/>
+      <Library Filename="[harbour]hbrdd"/>
+      <Library Filename="[harbour]hbusrrdd"/>
+      <Library Filename="[harbour]rddntx"/>
+      <Library Filename="[harbour]rddcdx"/>
+      <Library Filename="[harbour]rddnsx"/>
+      <Library Filename="[harbour]rddfpt"/>
+      <Library Filename="[harbour]rddads" Link="N"/>
+      <Library Filename="[harbour]ace32" Link="N"/>
+      <Library Filename="[harbour]hbhsx"/>
+      <Library Filename="[harbour]hbsix"/>
+      <Library Filename="[harbour]hbmacro"/>
+      <Library Filename="[harbour]hbcplr"/>
+      <Library Filename="[harbour]hbpp"/>
+      <Library Filename="[harbour]hbcommon"/>
+      <Library Filename="[harbour]hbtip"/>
+      <Library Filename="[harbour]hbmxml"/>
+      <Library Filename="[harbour]mxml"/>
+      <Library Filename="[harbour]hbpcre"/>
+      <Library Filename="[harbour]hbwin"/>
+      <Library Filename="[harbour]hbmzip"/>
+      <Library Filename="[harbour]minizip"/>
+      <Library Filename="[harbour]hbzlib"/>
+      <Library Filename="[harbour]xharbour"/>
+      <Library Filename="[mingw]crt2.o"/>
+      <Library Filename="[mingw]gcc\mingw32\4.9.2\crtbegin.o"/>
+      <Library Filename="[mingw]mingw32"/>
+      <Library Filename="[mingw]gcc\mingw32\4.9.2\gcc"/>
+      <Library Filename="[mingw]moldname"/>
+      <Library Filename="[mingw]mingwex"/>
+      <Library Filename="[mingw]msvcrt"/>
+      <Library Filename="[mingw]kernel32"/>
+      <Library Filename="[mingw]user32"/>
+      <Library Filename="[mingw]gdi32"/>
+      <Library Filename="[mingw]advapi32"/>
+      <Library Filename="[mingw]ws2_32"/>
+      <Library Filename="[mingw]winspool"/>
+      <Library Filename="[mingw]comctl32"/>
+      <Library Filename="[mingw]comdlg32"/>
+      <Library Filename="[mingw]shell32"/>
+      <Library Filename="[mingw]uuid"/>
+      <Library Filename="[mingw]ole32"/>
+      <Library Filename="[mingw]oleaut32"/>
+      <Library Filename="[mingw]oledlg"/>
+      <Library Filename="[mingw]mpr"/>
+      <Library Filename="[mingw]winmm"/>
+      <Library Filename="[mingw]mapi32"/>
+      <Library Filename="[mingw]imm32"/>
+      <Library Filename="[mingw]msimg32"/>
+      <Library Filename="[mingw]odbc32"/>
+      <Library Filename="[mingw]wininet"/>
+      <Library Filename="[mingw]version"/>
+      <Library Filename="[mingw]setupapi"/>
+      <Library Filename="[mingw]iphlpapi"/>
+   </Libraries>
+</Project>
+
