@@ -1,5 +1,7 @@
-FUNCTION Main()
-LOCAL row, oXlsx, i, cName, cDate, cTitle, aDoc
+FUNCTION Main(nLines)
+LOCAL row, oXlsx, i, cName, cDate, cTitle, aDoc, nL, nC
+
+nLines:= IIF( nLines == Nil, 40, VAL(nLines) )
 
 Set( _SET_DATEFORMAT, "yyyy-mm-dd" )
 
@@ -49,9 +51,14 @@ oXlsx:Write(   row, 10, "Tax/Fee1"          , 'textRightBoldColor' )
 oXlsx:Write(   row, 11, "Base Value2"       , 'textRightBoldColor' )
 oXlsx:Write(   row, 12, "Tax/Fee2"          , 'textRightBoldColor' )
 
-aDoc := GetData()
+aDoc := GetData(nLines)
 
-FOR i := 1 TO 40
+QOUT()
+nL:= ROW()
+nC:= COL()
+
+FOR i := 1 TO nLines
+   @ nL,nC SAY i/nLines*100
    oXlsx:Write( ++row,  0, aDoc[ i, 1 ], "textLeft" )
    oXlsx:Write(   row,  1, aDoc[ i, 2 ], "textLeft" )
    oXlsx:Write(   row,  2, DToC( aDoc[ i, 3 ] ), "textLeft" )
@@ -75,11 +82,11 @@ oXlsx:Write(   row,  4, "", "textLeft" )
 oXlsx:Write(   row,  5, "", "textLeft" )
 oXlsx:Write(   row,  6, "TOTAL ==> " + hb_ntos( LEN(aDoc) ) + " document(s)", "textLeftBold" )
 oXlsx:Write(   row,  7, "", "textLeft" )
-oXlsx:Write(   row,  8, "=SUM(I5:I44)", "numberRightBold" )
-oXlsx:Write(   row,  9, "=SUM(J5:J44)", "numberRightBold" )
-oXlsx:Write(   row, 10, "=SUM(K5:K44)", "numberRightBold" )
-oXlsx:Write(   row, 11, "=SUM(L5:L44)", "numberRightBold" )
-oXlsx:Write(   row, 12, "=SUM(M5:M44)", "numberRightBold" )
+oXlsx:Write(   row,  8, "=SUM(I5:I"+HB_NTOS(nLines+4)+")", "numberRightBold" )
+oXlsx:Write(   row,  9, "=SUM(J5:J"+HB_NTOS(nLines+4)+")", "numberRightBold" )
+oXlsx:Write(   row, 10, "=SUM(K5:K"+HB_NTOS(nLines+4)+")", "numberRightBold" )
+oXlsx:Write(   row, 11, "=SUM(L5:L"+HB_NTOS(nLines+4)+")", "numberRightBold" )
+oXlsx:Write(   row, 12, "=SUM(M5:M"+HB_NTOS(nLines+4)+")", "numberRightBold" )
 
 oXlsx:Add_Worksheet( "ws2", "sheet2" )
 oXlsx:Write( 0,  0, "TEXT LIN 1 COL 1 SHEET2", "textLeft" )
@@ -155,9 +162,9 @@ oXlsx:SetFormat( aFormat, 'HeaderCenter' )
 
 RETURN Nil
 
-FUNCTION GetData()
-LOCAL aDoc:= {}, i
-FOR i:= 1 TO 40
+FUNCTION GetData(nLines)
+LOCAL aDoc:= {}, i, n
+FOR i:= 1 TO nLines
    AAdd( aDoc, ;
       { StrZero( i, 8 ), ;
       "SA", ;
@@ -167,10 +174,10 @@ FOR i:= 1 TO 40
       StrZero( i, 5 ), ;
       "TEST CUSTOMER NAME " + hb_ntos( i ), ;
       "ME", ;
-      i * 100, ;
-      i * 100 * 0.90, ;
-      i * 100 * 0.90 * 0.12, ;
-      i * 100, ;
-      i * 100 * 0.10 } )
+      n:= HB_Random(10) * 1000, ;
+      n * 0.90, ;
+      n * 0.90 * 0.12, ;
+      n * 0.80, ;
+      n * 0.10 } )
 NEXT
 RETURN aDoc

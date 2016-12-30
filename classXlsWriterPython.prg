@@ -13,10 +13,12 @@ Python class: https://github.com/jmcnamara/XlsxWriter
 
 CLASS XlsxWriterPython
 
-   DATA nH
+   DATA nH 
+   DATA nHR
    DATA cPythonExe INIT "c:\python\python.exe"
    DATA cWorkbookFile
    DATA cPyFile INIT "xlsxwriter_python.py"
+   DATA cPyExec INIT "" 
    DATA aFormat INIT { => }
    DATA nIndexFormat INIT 0
    DATA cWorkSheet
@@ -33,6 +35,7 @@ CLASS XlsxWriterPython
    METHOD Set_Row( nRow, nHeight, cFormat )
    METHOD PrepareValue( xText )
    METHOD SaveWorkbook()
+   METHOD PreparePyExec()
    METHOD RunPython()
    METHOD ShowWorkbook()
 
@@ -40,11 +43,19 @@ END CLASS
 
 //------------
 METHOD New(cWorkbookFile,cPyFile) CLASS XlsxWriterPython
-LOCAL cPython:= ""
+LOCAL cPython:= "", cPath:= ""
 IF !EMPTY(cPyFile)
    ::cPyFile:= cPyFile
+ENDIF
+IF EMPTY(::cPyExec)
+   HB_FNAMESPLIT(::cPyFile, @cPath )
+   ::cPyExec:= HB_FNAMEMERGE(cPath,"xlsxwriter_exec","py")
 ENDIF   
 ::nH:= FCreate( ::cPyFile )
+IF FERROR() != 0
+   RETURN Nil
+ENDIF
+::nHR:= FCreate( ::cPyExec )
 IF FERROR() != 0
    RETURN Nil
 ENDIF
@@ -133,7 +144,11 @@ ELSEIF VALTYPE(xText) == "C"
    xValue:= "'"+STRTRAN(xText,"'","\'")+"'"
    xValue:= STRTRAN(xValue,pCRLF,"\n")
 ELSEIF VALTYPE(xText) == "D"   
-   xValue:= 'date('+HB_NTOS(YEAR(xText))+', '+HB_NTOS(MONTH(xText))+', '+HB_NTOS(DAY(xText))+')'
+   IF EMPTY(xText)
+      xValue:= "'"+DTOC(xText)+"'"
+   ELSE
+      xValue:= 'date('+HB_NTOS(YEAR(xText))+', '+HB_NTOS(MONTH(xText))+', '+HB_NTOS(DAY(xText))+')'
+   ENDIF
 ELSEIF VALTYPE(xText) == "L"
    xValue:= "'"+IIF(xText,"Y","N")+"'"
 ELSE
@@ -198,9 +213,22 @@ FClose( ::nH )
 RETURN Nil
 
 //------------
+METHOD PreparePyExec() CLASS XlsxWriterPython
+FWrite(::nHR, 'import sys'+pCRLF )
+FWrite(::nHR, 'import xlsxwriter'+pCRLF )
+FWrite(::nHR, 'fname = "'+STRTran(::cPyFile,"\","\\")+'"'+pCRLF )
+FWrite(::nHR, 'with open(fname,"r",encoding="utf-8") as f:'+pCRLF )
+FWrite(::nHR, '    content = f.readlines()'+pCRLF )
+FWrite(::nHR, 'for line in content:'+pCRLF )
+FWrite(::nHR, '    exec( line )'+pCRLF )
+FClose(::nHR )
+RETURN Nil
+
+//------------
 METHOD RunPython() CLASS XlsxWriterPython
 LOCAL cCmd
-cCmd:= ::cPythonExe+' "'+::cPyFile+'"'
+::PreparePyExec()
+cCmd:= ::cPythonExe+' "'+::cPyExec+'"'
 RunShell( cCmd,,,,.t. )
 RETURN Nil
 
